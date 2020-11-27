@@ -21,12 +21,16 @@ class EmployeeBloc extends Bloc<EmployeeEvent, EmployeeState> {
     }
     if (event is EmployeeDeleteEvent) {
       yield EmployeeLoadingState();
-      var deleteResponse = await deleteEmployee(event.id);
-      if (deleteResponse.status != "success") {
+      try {
+        var deleteResponse = await deleteEmployee(event.id);
+        if (deleteResponse.status != "success") {
+          yield ErrorState();
+        }
+
+        yield EmployeeDeletedState();
+      } on FormatException {
         yield ErrorState();
       }
-
-      yield EmployeeDeletedState();
     }
     if (event is AddEmployeeEvent) {
       yield EmployeeLoadingState();

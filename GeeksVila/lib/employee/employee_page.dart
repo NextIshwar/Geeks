@@ -237,7 +237,9 @@ class EmployeePage extends StatelessWidget {
                       ),
                     );
                   }
-                  return Center(
+                  return Container(
+                    height: MediaQuery.of(context).size.height * 0.7,
+                    alignment: Alignment.center,
                     child: AlertDialog(
                       title: Text("Something went wrong. Please try again"),
                       actions: [

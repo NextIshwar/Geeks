@@ -15,6 +15,10 @@ Future<DeleteEmployeeResponse> deleteEmployee(String id) async {
       status: "Failure",
       message: "Response is taking to much time. Please try after sometime",
     );
+  } on FormatException {
+    return DeleteEmployeeResponse(
+        status: "Failure",
+        message: "Response is taking to much time. Please try after sometime");
   }
   DeleteEmployeeResponse deleteEmployeeResponse =
       DeleteEmployeeResponse.fromJson(response.json());
