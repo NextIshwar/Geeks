@@ -136,8 +136,8 @@ class _AddEmployeePageState extends State<AddEmployeePage> {
           if (state is EmployeeAddedState) {
             _layoutStack.add(
               AlertDialog(
-                title:
-                    Text("Employee has been added. Your Emp Id: ${state.id}"),
+                title: Text(
+                    "Employee ${state.name.toUpperCase()} has been added. Your Emp Id : ${state.id}"),
                 actions: [
                   FlatButton(
                     onPressed: () {

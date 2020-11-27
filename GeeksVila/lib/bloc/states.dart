@@ -24,6 +24,6 @@ class EmployeeDeletedState extends EmployeeState {}
 class ErrorState extends EmployeeState {}
 
 class EmployeeAddedState extends EmployeeState {
-  final String success, id;
-  EmployeeAddedState({@required this.success, this.id});
+  final String success, id, name;
+  EmployeeAddedState({@required this.success, this.id, this.name});
 }

@@ -42,7 +42,8 @@ class EmployeeBloc extends Bloc<EmployeeEvent, EmployeeState> {
         } else {
           yield EmployeeAddedState(
               success: "Employee has been succesfully added",
-              id: response.data.id.toString());
+              id: response.data.id.toString(),
+              name: response.data.name);
         }
       } on FormatException {
         yield ErrorState();
