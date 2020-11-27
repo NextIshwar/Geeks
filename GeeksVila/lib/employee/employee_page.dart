@@ -93,6 +93,16 @@ class EmployeePage extends StatelessWidget {
                           RaisedButton(
                             onPressed: () {
                               Navigator.pop(context);
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => BlocProvider(
+                                      create: (_) => EmployeeBloc(
+                                          initialState: EmployeeLoadingState())
+                                        ..add(EmployeeDetailsEvent()),
+                                      child: EmployeePage()),
+                                ),
+                              );
                             },
                             child: (Text("OK")),
                           )
