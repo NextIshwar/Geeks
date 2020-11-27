@@ -7,7 +7,7 @@
 ## Bugs
 * If an employee is added or deleted it is not reflecting in Employee table. Employee Delete API, and Employee Create API are not connected to Employee Details API(Employee table).
 * Sometimes Delete API gives unformatted response due to which error comes. In this case the app will ask the user to delete again. On performing delete action again it will delete the Employee.
-* Sometime Create API doesnot gives response. In this case user have to submit form again to add. 
+* Sometime Create API does'nt gives response. In this case user have to submit form again to add. 
 
 # Steps to run the program.
 * Clone the github repo [https://github.com/NextIshwar/Geeks.git](https://github.com/NextIshwar/Geeks.git)
