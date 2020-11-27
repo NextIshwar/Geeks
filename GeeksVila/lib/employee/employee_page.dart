@@ -57,7 +57,49 @@ class EmployeePage extends StatelessWidget {
                         backgroundColor: Colors.greenAccent,
                       ),
                     );
-                  } else if (state is ShowEmployeeState) {
+                  } else if (state is EmployeeDeletedState) {
+                    return Container(
+                      height: MediaQuery.of(context).size.height * 0.7,
+                      alignment: Alignment.center,
+                      child: AlertDialog(
+                        title: Text("Employee has been removed"),
+                        actions: [
+                          FlatButton(
+                            onPressed: () {
+                              Navigator.pop(context);
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => BlocProvider(
+                                      create: (_) => EmployeeBloc(
+                                          initialState: EmployeeLoadingState())
+                                        ..add(EmployeeDetailsEvent()),
+                                      child: EmployeePage()),
+                                ),
+                              );
+                            },
+                            child: Text("Ok"),
+                          )
+                        ],
+                      ),
+                    );
+                  } else if (state is ErrorState)
+                    return Container(
+                      height: MediaQuery.of(context).size.height * 0.7,
+                      alignment: Alignment.center,
+                      child: AlertDialog(
+                        title: Text("Something went wrong. Please try again"),
+                        actions: [
+                          RaisedButton(
+                            onPressed: () {
+                              Navigator.pop(context);
+                            },
+                            child: (Text("OK")),
+                          )
+                        ],
+                      ),
+                    );
+                  else
                     return Container(
                       decoration: BoxDecoration(
                         color: Colors.greenAccent,
@@ -220,38 +262,6 @@ class EmployeePage extends StatelessWidget {
                         ),
                       ),
                     );
-                  } else if (state is EmployeeDeletedState) {
-                    return Container(
-                      height: MediaQuery.of(context).size.height * 0.7,
-                      alignment: Alignment.center,
-                      child: AlertDialog(
-                        title: Text("Employee has been removed"),
-                        actions: [
-                          FlatButton(
-                            onPressed: () {
-                              Navigator.pop(context);
-                            },
-                            child: Text("Ok"),
-                          )
-                        ],
-                      ),
-                    );
-                  }
-                  return Container(
-                    height: MediaQuery.of(context).size.height * 0.7,
-                    alignment: Alignment.center,
-                    child: AlertDialog(
-                      title: Text("Something went wrong. Please try again"),
-                      actions: [
-                        RaisedButton(
-                          onPressed: () {
-                            Navigator.pop(context);
-                          },
-                          child: (Text("OK")),
-                        )
-                      ],
-                    ),
-                  );
                 },
               ),
             ],

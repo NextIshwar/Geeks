@@ -3,6 +3,8 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 
 class EmployeeState extends Equatable {
+  final List<Data> data;
+  EmployeeState({this.data});
   @override
   List<Object> get props => null;
 }

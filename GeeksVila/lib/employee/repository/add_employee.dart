@@ -20,6 +20,8 @@ Future<AddEmployeeResponse> addEmployee({String name, salary, age}) async {
     return AddEmployeeResponse(
       status: "Failure",
     );
+  } on FormatException {
+    return AddEmployeeResponse(status: "Failure");
   }
   AddEmployeeResponse newEmployeeResponse =
       AddEmployeeResponse.fromJson(response.json());

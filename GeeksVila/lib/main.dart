@@ -33,8 +33,8 @@ class Vila extends StatelessWidget {
       height: height,
       width: width,
       decoration: BoxDecoration(
-          color: Colors.greenAccent,
-          image: DecorationImage(image: AssetImage("images/Employee.png"))),
+        color: Colors.greenAccent,
+      ),
       alignment: Alignment.center,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
