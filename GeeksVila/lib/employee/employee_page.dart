@@ -51,12 +51,11 @@ class EmployeePage extends StatelessWidget {
                 builder: (context, state) {
                   if (state is EmployeeLoadingState) {
                     return Container(
-                      height: MediaQuery.of(context).size.height * 0.9,
+                      height: MediaQuery.of(context).size.height * 0.7,
                       alignment: Alignment.center,
-                      child: Center(
-                          child: CircularProgressIndicator(
+                      child: CircularProgressIndicator(
                         backgroundColor: Colors.greenAccent,
-                      )),
+                      ),
                     );
                   } else if (state is ShowEmployeeState) {
                     return Container(
@@ -151,8 +150,10 @@ class EmployeePage extends StatelessWidget {
                                         onPressed: () {
                                           Navigator.push(
                                             context,
-                                            MaterialPageRoute(
-                                              builder: (_) => AlertDialog(
+                                            PageRouteBuilder(
+                                              opaque: false,
+                                              pageBuilder: (_, __, ___) =>
+                                                  AlertDialog(
                                                 backgroundColor:
                                                     Colors.grey[200],
                                                 title: Text(
@@ -220,7 +221,9 @@ class EmployeePage extends StatelessWidget {
                       ),
                     );
                   } else if (state is EmployeeDeletedState) {
-                    return Center(
+                    return Container(
+                      height: MediaQuery.of(context).size.height * 0.7,
+                      alignment: Alignment.center,
                       child: AlertDialog(
                         title: Text("Employee has been removed"),
                         actions: [

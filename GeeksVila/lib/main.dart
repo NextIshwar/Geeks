@@ -32,56 +32,65 @@ class Vila extends StatelessWidget {
     return Container(
       height: height,
       width: width,
-      color: Colors.greenAccent,
+      decoration: BoxDecoration(
+          color: Colors.greenAccent,
+          image: DecorationImage(image: AssetImage("images/Employee.png"))),
       alignment: Alignment.center,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          RaisedButton(
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(10),
+          Container(
+            height: height * 0.06,
+            child: RaisedButton(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10),
+              ),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => BlocProvider(
+                        create: (_) =>
+                            EmployeeBloc(initialState: EmployeeLoadingState())
+                              ..add(EmployeeDetailsEvent()),
+                        child: EmployeePage()),
+                  ),
+                );
+              },
+              child: Text(
+                "Employee",
+                style: TextStyle(
+                    color: Colors.grey[200], fontWeight: FontWeight.w700),
+              ),
+              color: Colors.black,
             ),
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => BlocProvider(
-                      create: (_) =>
-                          EmployeeBloc(initialState: EmployeeLoadingState())
-                            ..add(EmployeeDetailsEvent()),
-                      child: EmployeePage()),
-                ),
-              );
-            },
-            child: Text(
-              "Employee",
-              style: TextStyle(
-                  color: Colors.grey[200], fontWeight: FontWeight.w700),
-            ),
-            color: Colors.black,
           ),
           SizedBox(
             width: width * 0.1,
           ),
-          RaisedButton(
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(10),
+          Container(
+            height: height * 0.06,
+            child: RaisedButton(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10),
+              ),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => BlocProvider(
+                        create: (_) => EmployeeBloc(),
+                        child: AddEmployeePage()),
+                  ),
+                );
+              },
+              child: Text(
+                "Add Employee",
+                style: TextStyle(
+                    color: Colors.grey[200], fontWeight: FontWeight.w700),
+              ),
+              color: Colors.black,
             ),
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => BlocProvider(
-                      create: (_) => EmployeeBloc(), child: AddEmployeePage()),
-                ),
-              );
-            },
-            child: Text(
-              "Add Employee",
-              style: TextStyle(
-                  color: Colors.grey[200], fontWeight: FontWeight.w700),
-            ),
-            color: Colors.black,
           )
         ],
       ),

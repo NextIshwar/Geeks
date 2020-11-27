@@ -12,14 +12,22 @@ class AddEmployeePage extends StatefulWidget {
 
 class _AddEmployeePageState extends State<AddEmployeePage> {
   final _formKey = GlobalKey<FormState>();
+  List<FocusNode> textFieldsNode = new List(3);
+  List<TextEditingController> _controller = List<TextEditingController>(3);
+  @override
+  void initState() {
+    super.initState();
+    for (int i = 0; i < 3; i++) {
+      _controller[i] = new TextEditingController();
+      textFieldsNode[i] = FocusNode();
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
-    List<TextEditingController> _controller = List<TextEditingController>(3);
-    for (int i = 0; i < 3; i++) {
-      _controller[i] = new TextEditingController();
-    }
+
     return Scaffold(
       backgroundColor: Colors.greenAccent,
       appBar: AppBar(
@@ -51,6 +59,13 @@ class _AddEmployeePageState extends State<AddEmployeePage> {
                                       color: Colors.grey[200],
                                       borderRadius: BorderRadius.circular(10)),
                                   child: TextFormField(
+                                    keyboardType: (index != 0)
+                                        ? TextInputType.number
+                                        : TextInputType.name,
+                                    textInputAction: (index != 2)
+                                        ? TextInputAction.next
+                                        : TextInputAction.done,
+                                    focusNode: textFieldsNode[index],
                                     controller: _controller[index],
                                     decoration: new InputDecoration(
                                       hintStyle: TextStyle(
@@ -60,7 +75,6 @@ class _AddEmployeePageState extends State<AddEmployeePage> {
                                           borderSide: BorderSide(
                                               color: Colors.grey[200])),
                                       hintText: FieldNames.fieldName[index],
-                                      // errorText: 'Error message',
                                       border: OutlineInputBorder(),
                                       prefixIcon: Icon(
                                         FieldNames.icons[index],
