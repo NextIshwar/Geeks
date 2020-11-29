@@ -8,10 +8,10 @@ Future<Employees> getEmployeeResponse() async {
   try {
     response = await Requests.get(
       _searchURL,
-      timeoutSeconds: 30,
+      timeoutSeconds: 10,
     );
   } on TimeoutException {
-    return Employees(
+    Employees(
       status: "Failure",
     );
   }

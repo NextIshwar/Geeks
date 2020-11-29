@@ -14,7 +14,7 @@ Future<AddEmployeeResponse> addEmployee({String name, salary, age}) async {
     response = await Requests.post(
       _searchURL,
       json: req,
-      timeoutSeconds: 30,
+      timeoutSeconds: 10,
     );
   } on TimeoutException {
     return AddEmployeeResponse(

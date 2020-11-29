@@ -8,7 +8,7 @@ Future<DeleteEmployeeResponse> deleteEmployee(String id) async {
   try {
     response = await Requests.delete(
       _searchURL,
-      timeoutSeconds: 30,
+      timeoutSeconds: 10,
     );
   } on TimeoutException {
     return DeleteEmployeeResponse(
